@@ -75,7 +75,7 @@ public class AndroidPage {
 
         setDay();
 
-        //setTime();
+        setTime();
     }
 
     public void setDay() {
@@ -92,24 +92,24 @@ public class AndroidPage {
 
         driver.findElement(MobileBy.id("android:id/button1")).click();
     }
-//    Часы не работают, не смог понять причину
-//    public void setTime() {
-//        driver.findElement(MobileBy.AccessibilityId("change the time (spinner)")).click();
-//
-//        driver.findElement(MobileBy.AndroidUIAutomator(
-//                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"11\"))"
-//        )).click();
-//
-//        driver.findElement(MobileBy.AndroidUIAutomator(
-//                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"11\"))"
-//        )).click();
-//
-//        driver.findElement(MobileBy.AndroidUIAutomator(
-//                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"PM\"))"
-//        )).click();
-//
-//        driver.findElementById("android:id/button1").click();
-//    }
+
+    public void setTime() {
+        driver.findElement(MobileBy.AccessibilityId("change the time (spinner)")).click();
+
+        MobileElement hours = (MobileElement) driver.findElement(MobileBy.xpath("//android.widget.EditText[@resource-id='android:id/numberpicker_input' and @text='1']"));
+        hours.clear();
+        hours.sendKeys("11");
+
+        MobileElement minutes = (MobileElement) driver.findElement(MobileBy.xpath("//android.widget.EditText[@resource-id='android:id/numberpicker_input' and @text='02']"));
+        minutes.clear();
+        minutes.sendKeys("11");
+
+        driver.findElement(MobileBy.AndroidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"PM\"))"
+        )).click();
+
+        driver.findElementById("android:id/button1").click();
+    }
 
 
     public void buttonCheck() {
